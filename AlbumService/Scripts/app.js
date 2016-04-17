@@ -2,6 +2,7 @@
     var self = this;
     self.albums = ko.observableArray();
     self.error = ko.observable();
+    self.detail = ko.observable();
 
     var albumsUri = '/api/albums/'
 
@@ -21,6 +22,13 @@
     function getAllAlbums() {
         ajaxHelper(albumsUri, 'GET').done(function (data) {
             self.albums(data);
+        });
+    }
+
+
+    self.getAlbumDetail = function (item) {
+        ajaxHelper(albumsUri + item.Id, 'GET').done(function (data) {
+            self.detail(data);
         });
     }
 

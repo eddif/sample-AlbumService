@@ -17,7 +17,7 @@
                 <ul class="list-unstyled" data-bind="foreach: albums">
                     <li>
                         <strong><span data-bind="text: ArtistName"></span></strong>: <span data-bind="text: Title"></span>
-                        <small><a href="#">Details</a></small>
+                        <small><a href="#" data-bind="click: $parent.getAlbumDetail">Details</a></small>
                     </li>
                 </ul>
             </div>
@@ -25,9 +25,22 @@
         <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
     </div>
 
+    <!-- ko if:detail() -->
     <div class="col-md-4">
-        <!-- TODO: Book details -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Detail</h2>
+            </div>
+            <table class="table">
+                <tr><td>Artist</td><td data-bind="text: detail().ArtistName"></td></tr>
+                <tr><td>Title</td><td data-bind="text: detail().Title"></td></tr>
+                <tr><td>Year</td><td data-bind="text: detail().Year"></td></tr>
+                <tr><td>Genre</td><td data-bind="text: detail().Genre"></td></tr>
+                <tr><td>Price</td><td data-bind="text: detail().Price"></td></tr>
+            </table>
+        </div>
     </div>
+    <!-- /ko -->
 
     <div class="col-md-4">
         <!-- TODO: Add new book -->
